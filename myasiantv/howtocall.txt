@@ -1,0 +1,8 @@
+scrapy crawl myasiantvsp -o output.json
+
+
+
+place the link inside todownloadlinks.txt
+
+example link 
+http://myasiantv.se/drama/rebel-thief-who-stole-the-people/download/

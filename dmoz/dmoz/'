@@ -1,0 +1,25 @@
+# -*- coding: utf-8 -*-
+import scrapy
+from scrapy.linkextractors import LinkExtractor
+from scrapy.spiders import CrawlSpider, Rule
+from dmoz.items import daydownItem
+from dmoz.loaders import daydownLoader
+
+
+class A0daydownSpider(CrawlSpider):
+    name = '0daydown'
+    allowed_domains = ['0daydown.com']
+    start_urls = ['http://www.0daydown.com/category/tutorials/other']
+
+
+    rules = (
+        Rule(LinkExtractor(restrict_css='.focus > a'), callback='parse_item', follow=True),
+    )
+
+    def parse_item(self, response):
+        item = daydownItem()
+        item['title'] = response.css('.article-title > a::text').extract()
+        item
+        print item
+        yield item
+
